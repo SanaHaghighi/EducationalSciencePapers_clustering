@@ -30,7 +30,7 @@ The main goal is to discover hidden topic structures and group educational scien
 ├── evaluation.png                              # Evaluation results visualization
 └── cover.png                                   # Project cover image
 
----text
+```text
 
 ## 🗃️ Dataset Description
 
