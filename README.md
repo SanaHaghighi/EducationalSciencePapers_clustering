@@ -17,18 +17,19 @@ The main goal is to discover hidden topic structures and group educational scien
 
 ## 📂 Repository Structure
 ```text
-├── DataMiningProject.ipynb                     # Main Jupyter Notebook
-├── dataset.csv                                 # Dataset of educational science papers
-├── educational science papers clustering.pdf   # Final project report
-├── evaluation-code.png                         # Evaluation code/output screenshot
-├── word-to-vector.png                          # Word/vector representation visualization
-├── kmeans.png                                  # K-Means clustering visualization
-├── kmeans-plus-plus-w2v.png                    # K-Means++ / Word2Vec visualization
-├── agglomerative-dendrogram.png                # Hierarchical clustering dendrogram
-├── agglomerative-3d.png                        # 3D Agglomerative clustering visualization
-├── clusters-keywords-w2v.png                   # Cluster keyword visualization
-├── evaluation.png                              # Evaluation results visualization
-└── cover.png                                   # Project cover image
+├── DataMiningProject.ipynb
+├── dataset.csv
+├── educational science papers clustering.pdf
+├── cover.png
+├── word-to-vector.png
+├── kmeans.png
+├── kmeans-plus-plus-w2v.png
+├── agglomerative-dendrogram.png
+├── agglomerative-3d.png
+├── clusters-keywords-w2v.png
+├── evaluation.png
+├── evaluation-code.png
+└── README.md
 
 ```
 
@@ -74,8 +75,6 @@ Main preprocessing steps include:
 - Lemmatization
 
 Persian NLP preprocessing is mainly handled using the **Hazm** library.
-
-Examples of preprocessing tools:
 
 python
 from hazm import Normalizer, Lemmatizer, WordTokenizer
@@ -154,24 +153,32 @@ These metrics help compare clustering results and assess how well documents are 
 
 ## 📈 Visualizations
 
-Several visualizations are generated to better understand clustering results:
+### Cover
+![Cover](cover.png)
 
-- Elbow Method plot for selecting the number of clusters
-- 2D cluster scatter plots
-- 3D PCA/t-SNE visualizations
-- Agglomerative dendrogram
-- Cluster keyword visualization
-- Evaluation metric plots
+### Word / Vector Representation
+![Word to Vector](word-to-vector.png)
 
-Example visualization files include:
+### K-Means Clustering
+![KMeans](kmeans.png)
 
-text
-kmeans.png
-kmeans-plus-plus-w2v.png
-agglomerative-3d.png
-agglomerative-dendrogram.png
-clusters-keywords-w2v.png
-evaluation.png
+### K-Means++ with Word2Vec
+![KMeans++ Word2Vec](kmeans-plus-plus-w2v.png)
+
+### Agglomerative Clustering 3D View
+![Agglomerative 3D](agglomerative-3d.png)
+
+### Agglomerative Dendrogram
+![Agglomerative Dendrogram](agglomerative-dendrogram.png)
+
+### Cluster Keywords
+![Cluster Keywords](clusters-keywords-w2v.png)
+
+### Evaluation Results
+![Evaluation](evaluation.png)
+
+### Evaluation Code / Output
+![Evaluation Code](evaluation-code.png)
 
 ---
 
@@ -204,47 +211,37 @@ python
 import pandas as pd
 
 from hazm import Normalizer, Lemmatizer, WordTokenizer
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans, AgglomerativeClustering
 from sklearn.metrics import silhouette_score
 
-# Load dataset
 df = pd.read_csv("dataset.csv")
 
-# Initialize Persian NLP tools
 normalizer = Normalizer()
 tokenizer = WordTokenizer()
 lemmatizer = Lemmatizer()
 
-# Simple preprocessing function
 def preprocess_text(text):
 text = normalizer.normalize(str(text))
 tokens = tokenizer.tokenize(text)
 tokens = [lemmatizer.lemmatize(token) for token in tokens]
 return " ".join(tokens)
 
-# Apply preprocessing
 df["processed_text"] = df["text"].fillna("").apply(preprocess_text)
 
-# TF-IDF vectorization
 vectorizer = TfidfVectorizer(max_features=2000)
 X = vectorizer.fit_transform(df["processed_text"])
 
-# Dimensionality reduction
 pca = PCA(n_components=3)
 X_pca = pca.fit_transform(X.toarray())
 
-# K-Means clustering
 kmeans = KMeans(n_clusters=8, init="k-means++", random_state=42)
 kmeans_labels = kmeans.fit_predict(X_pca)
 
-# Agglomerative clustering
 agg = AgglomerativeClustering(n_clusters=8, linkage="ward")
 agg_labels = agg.fit_predict(X_pca)
 
-# Evaluation
 score = silhouette_score(X_pca, kmeans_labels)
 print("Silhouette Score:", score)
 
@@ -284,93 +281,9 @@ python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
 
 ---
 
-## 🚀 How to Run
+## ▶️ How to Run
 
-### Option 1: Run with Jupyter Notebook
-
-bash
-jupyter notebook DataMiningProject.ipynb
-
-Then open the notebook and run all cells.
-
-### Option 2: Convert Notebook to Python Script
-
-bash
-jupyter nbconvert --to script DataMiningProject.ipynb
-python DataMiningProject.py
-
----
-
-## ✅ Results
-
-The project produces:
-
-- Cluster labels for each paper
-- Evaluation scores for clustering algorithms
-- Visual comparison between clustering methods
-- 2D and 3D cluster visualizations
-- Hierarchical dendrogram
-- Keyword summaries for clusters
-
----
-
-## 🔮 Future Work
-
-Possible improvements for this project:
-
-- Use **Word2Vec**, **Doc2Vec**, or **Sentence-BERT** for richer semantic embeddings
-- Improve multilingual preprocessing
-- Add automatic cluster labeling using TF-IDF or KeyBERT
-- Build an interactive visualization dashboard using Plotly or Streamlit
-- Compare more clustering algorithms such as DBSCAN or Gaussian Mixture Models
-- Export clustered results to CSV
-
----
-
-## 🛠️ Technologies Used
-
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Scikit-learn
-- Hazm
-- NLTK
-- Matplotlib
-- Seaborn
-- Plotly
-- Gensim
-
----
-
-## 📜 License
-
-This project is released under the **MIT License**.
-
-You can modify the license based on your own requirements.
-
----
-
-## 👨‍💻 Author
-
-**Your Name**
-
-- GitHub: [your-github-profile](https://github.com/your-username)
-- Email: your-email@example.com
-
----
-
-## 📌 Citation
-
-If you use this project, dataset, or methodology, please cite it as:
-
-text
-Educational Science Papers Clustering Project, 2026.
-
----
-
-## ⭐ Acknowledgements
-
-This project was developed as a data mining and natural language processing project focused on clustering educational science research papers.
-
-Special thanks to the open-source Python ecosystem and libraries used in this work.
+1. Open the notebook:
+   
+```bash
+   jupyter notebook DataMiningProject.ipynb
