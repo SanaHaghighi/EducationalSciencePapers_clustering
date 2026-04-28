@@ -154,6 +154,8 @@ These metrics help compare clustering results and assess how well documents are 
 ## 📈 Visualizations
 
 ### Cover
+> 📷 Example placeholder:
+  <img width="350" alt="image" src="https://github.com/user-attachments/assets/1afabf7e-bbc4-4ad0-8a21-e145527c6f4b" />
 ![Cover](cover.png)
 
 ### Word / Vector Representation
