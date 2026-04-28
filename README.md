@@ -153,36 +153,7 @@ These metrics help compare clustering results and assess how well documents are 
 
 ## 📈 Visualizations
 
-### Cover
-> 📷 Example placeholder:
-  <img width="350" alt="image" src="https://github.com/user-attachments/assets/1afabf7e-bbc4-4ad0-8a21-e145527c6f4b" />
-![Cover](cover.png)
 
-### Word / Vector Representation
-![Word to Vector](word-to-vector.png)
-
-### K-Means Clustering
-![KMeans](kmeans.png)
-
-### K-Means++ with Word2Vec
-![KMeans++ Word2Vec](kmeans-plus-plus-w2v.png)
-
-### Agglomerative Clustering 3D View
-![Agglomerative 3D](agglomerative-3d.png)
-
-### Agglomerative Dendrogram
-![Agglomerative Dendrogram](agglomerative-dendrogram.png)
-
-### Cluster Keywords
-![Cluster Keywords](clusters-keywords-w2v.png)
-
-### Evaluation Results
-![Evaluation](evaluation.png)
-
-### Evaluation Code / Output
-![Evaluation Code](evaluation-code.png)
-
----
 
 ## 🧠 Key Findings
 
